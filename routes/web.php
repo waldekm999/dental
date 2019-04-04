@@ -19,7 +19,14 @@ Route::get('/', 'GlobalController@index')->name('global.index');
 
 Route::get('/lekarze', 'GlobalController@personnel')->name('global.personnel');
 
-Route::prefix('admin')->group(function (){
+//Route::prefix('admin')->group(function (){
+Route::group([
+    'prefix' =>'admin',
+    'middleware' => [
+        'auth',
+        'staff'
+    ],
+], function () {
     Route::get('/lekarze/dodaj', 'StaffController@create')->name('staff.create');
     Route::post('/lekarze/edytuj', 'StaffController@editStore')->name('staff.editStore');
     Route::get('/lekarze/edytuj/{id}', 'StaffController@edit')->name('staff.edit');
@@ -38,7 +45,7 @@ Route::prefix('admin')->group(function (){
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');
     Route::get('/pacjenci/{searchkey?}', 'PatientController@index')->where('searchkey', '[A-Za-z]+')->name('patient.index');
     Route::post('/pacjenci/', 'PatientController@store')->name('patient.store');
-    Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');
+    Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');//->middleware('auth', 'staff');
 });
 
 
