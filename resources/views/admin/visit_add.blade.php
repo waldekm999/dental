@@ -51,7 +51,7 @@
 
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="status" id="rezerwation" value="rezerwacja" checked>
-                <label class="form-check-label" for="rezerwacion">
+                <label class="form-check-label" for="rezerwation">
                     rezerwacja
                 </label>
             </div>

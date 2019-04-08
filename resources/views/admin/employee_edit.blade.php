@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="address">Adres</label>
-                <input type="text" class="form-control" name="addres" value="{{ $employee->address }}" />
+                <input type="text" class="form-control" name="address" value="{{ $employee->address }}" />
             </div>
 
             <h6>Specializacje: </h6>

@@ -19,6 +19,14 @@ Route::get('/', 'GlobalController@index')->name('global.index');
 
 Route::get('/lekarze', 'GlobalController@personnel')->name('global.personnel');
 
+//Route::get('/pacjenci','GlobalController@index')->name('global.index2');
+
+Route::get('/pacjenci', function () {
+    echo '<h1 style="color: red">Błąd 404 - nie ma takiej strony</h1>';
+} );
+
+Route::post('/pacjenci', 'PatientController@store')->name('patient.store');
+
 //Route::prefix('admin')->group(function (){
 Route::group([
     'prefix' =>'admin',
@@ -44,9 +52,10 @@ Route::group([
     Route::post('pacjenci/edytuj', 'PatientController@editStore')->name('patient.editStore');
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');
     Route::get('/pacjenci/{searchkey?}', 'PatientController@index')->where('searchkey', '[A-Za-z]+')->name('patient.index');
-    Route::post('/pacjenci/', 'PatientController@store')->name('patient.store');
+
     Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');//->middleware('auth', 'staff');
 });
+
 
 
 Auth::routes();

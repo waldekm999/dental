@@ -59,7 +59,7 @@ class StaffController extends Controller
         $employee->name = $request->input('name');
         $employee->surname = $request->input('surname');
         $employee->email = $request->input('email');
-        $employee->password = $request->input('password');
+        $employee->password = bcrypt($request->input('password'));
         $employee->pesel = $request->input('pesel');
         $employee->phone = $request->input('phone');
         $employee->city = $request->input('city');
@@ -103,8 +103,8 @@ class StaffController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'pesel' => 'required|max:11|min:11|unique:users,pesel',
+            'email' => 'required|email|max:255',
+            'pesel' => 'required|max:11|min:11',
             'phone' => 'required|min:9|max:255',
         ]);
 

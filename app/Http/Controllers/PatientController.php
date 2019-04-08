@@ -49,7 +49,7 @@ class PatientController extends Controller
         $patient->name = $request->input('name');
         $patient->surname = $request->input('surname');
         $patient->email = $request->input('email');
-        $patient->password = $request->input('password');
+        $patient->password = bcrypt($request->input('password'));
         $patient->pesel = $request->input('pesel');
         $patient->phone = $request->input('phone');
         $patient->city = $request->input('city');
