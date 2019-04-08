@@ -89,7 +89,7 @@ class PatientController extends Controller
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
             'email' => 'required|max:255',
-            'pesel' => 'required|max:11|min:11|unique:users,pesel',
+            'pesel' => 'required|max:11|min:11',
             'phone' => 'required|min:9|max:255',
         ]);
 
