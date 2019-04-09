@@ -25,4 +25,12 @@ class GlobalController extends Controller
             'title' => 'Nasi specialiści'
        ]);
     }
+
+    public function specializations()
+    {
+
+        return view('specializations', [
+           'title' => 'Nasze specializacje'
+        ]);
+    }
 }

@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('global.specializations') }}">
                         {{ __('Nasze specjalizacje') }}
                     </a>
                     <a class="navbar-brand" href="{{ route('global.personnel') }}">
@@ -46,9 +46,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ __('Umów wizytę') }}
                     </a>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ __('Jak dojechać') }}
-                    </a>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

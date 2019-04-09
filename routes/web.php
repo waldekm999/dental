@@ -19,9 +19,14 @@ Route::get('/', 'GlobalController@index')->name('global.index');
 
 Route::get('/lekarze', 'GlobalController@personnel')->name('global.personnel');
 
+Route::get('specjalizacje', 'GlobalController@specializations')->name('global.specializations');
+
 //Route::get('/pacjenci','GlobalController@index')->name('global.index2');
 
-Route::get('/pacjenci', function () {
+Route::get(/**
+ *
+ */
+    '/pacjenci', function () {
     echo '<h1 style="color: red">Błąd 404 - nie ma takiej strony</h1>';
 } );
 

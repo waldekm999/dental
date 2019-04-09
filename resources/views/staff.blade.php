@@ -10,6 +10,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container-Fluid">
+        <div class="jumbotron jumbotron-fluid my-0">
+            <div class="container">
+                <h1>Nasz zespół jest do Twojej dyspozycji</h1>
+                <p>Donec vehicula, quam vel dapibus malesuada, est arcu egestas ex, ornare auctor lectus ex in nisl. Suspendisse in consectetur erat.</p>
+            </div>
+        </div>
+    </div>
     <div class="container ">
         <div class= "row">
             @foreach($personnel_list as $employee)
