@@ -39,7 +39,7 @@ class LoginController extends Controller
             return '/admin/wizyty';
         }
         else{
-            return '/';
+            return '/wizyty/pacjenci/0';
         }
     }
 

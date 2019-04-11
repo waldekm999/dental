@@ -7,7 +7,8 @@
  */
 ?>
 
-@extends('layouts.admin_app')
+@extends($menu)
+
 
 @section('content')
     <div class="container">
@@ -19,6 +20,7 @@
                 <th>Specialista</th>
                 <th>Pacjent</th>
                 <th>Data</th>
+                <th>Godzina</th>
                 <th>Status</th>
                 <th>Opis</th>
             </tr>
@@ -30,6 +32,7 @@
                     <td>{{ $visit->doctor->surname.' '.$visit->doctor->name }}</td>
                     <td>{{ $visit->patient->surname.' '.$visit->patient->name }}</td>
                     <td>{{ $visit->date }}</td>
+                    <td>{{ $visit->time_in.' -- '.$visit->time_out }}</td>
                     <td> {{ $visit->status }}</td>
                     <td>{{ $visit->description }}</td>
                 </tr>

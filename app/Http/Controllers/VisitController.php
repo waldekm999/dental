@@ -7,6 +7,7 @@ use App\Repositories\UserRepository;
 use App\Repositories\VisitRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class VisitController extends Controller
@@ -33,10 +34,22 @@ class VisitController extends Controller
 
     public function patientVisits(VisitRepository $model, $id)
     {
+        $user = Auth::user();
+        $type = $user->type;
+        $menu = 'layouts.admin_app';
+
+        if($type == 'patient') {
+            $id = $user->id;
+            $menu = 'layouts.app';
+        }
+
+
         $visits = $model->getPatientVisits($id);
         return view('admin/employee_visits', [
             'visits' => $visits,
-            'title' => 'Wizyty'
+            'title' => 'Wizyty',
+            'menu' => $menu,
+            'id' => $user->id
         ]);
     }
 

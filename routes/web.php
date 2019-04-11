@@ -32,6 +32,8 @@ Route::get(/**
 
 Route::post('/pacjenci', 'PatientController@store')->name('patient.store');
 
+Route::get('/wizyty/pacjenci/{id}', 'VisitController@patientVisits')->where('id', '[0-9]+')->name('visit.patientVisits')->middleware('auth');
+
 //Route::prefix('admin')->group(function (){
 Route::group([
     'prefix' =>'admin',
@@ -52,7 +54,7 @@ Route::group([
     Route::get('/wizyty', 'VisitController@index')->name('visit.index');
     Route::post('wizyty/', 'VisitController@store')->name('visit.store');
     Route::get('/wizyty/lekarze/{id}', 'VisitController@staffVisits')->name('visit.staffVisits');
-    Route::get('/wizyty/pacjenci/{id}', 'VisitController@patientVisits')->name('visit.patientVisits');
+    //Route::get('/wizyty/pacjenci/{id}', 'VisitController@patientVisits')->name('visit.patientVisits');
     Route::get('/pacjenci/dodaj', 'PatientController@create')->name('patient.create');
     Route::post('pacjenci/edytuj', 'PatientController@editStore')->name('patient.editStore');
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');

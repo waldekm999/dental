@@ -9,6 +9,7 @@
 
 @extends('layouts.admin_app')
 
+
 @section('content')
     <div class="container">
         <h2>Lista Wizyt</h2>

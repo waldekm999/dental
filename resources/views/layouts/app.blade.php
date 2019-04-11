@@ -43,8 +43,8 @@
                     <a class="navbar-brand" href="{{ route('global.personnel') }}">
                         {{ __('Nasi specjaliści') }}
                     </a>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ __('Umów wizytę') }}
+                    <a class="navbar-brand" href="{{ route('visit.patientVisits',['id' => '0']) }}">
+                        {{ __('Moje wizyty') }}
                     </a>
 
                 </ul>
