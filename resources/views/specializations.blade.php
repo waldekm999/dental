@@ -34,7 +34,7 @@
                     tellus ac cursus commodo. In dictum porta ante, in porta sapien interdum et. Vivamus ligula leo,
                     viverra et sapien vel, tincidunt rutrum elit. Vestibulum placerat lacinia condimentum.
                     Curabitur suscipit, orci ut consectetur eleifend, </p>
-                <a href="#" class="btn btn-primary stretched-link">Umów się na wizytę</a>
+                <a href="{{route('global.personnel')}}" class="btn btn-primary stretched-link">Umów się na wizytę</a>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="images/child.jpg" alt="Generic placeholder image">
@@ -52,7 +52,7 @@
                     Nulla commodo porttitor eros eget convallis. Vestibulum blandit non diam eu cursus.
                     Nullam ut nulla elementum, tempus enim a, viverra turpis.
                 </p>
-                <a href="#" class="btn btn-primary stretched-link">Umów się na wizytę</a>
+                <a href="{{route('global.personnel')}}" class="btn btn-primary stretched-link">Umów się na wizytę</a>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" src="images/higienizacja1.jpg" alt="Generic placeholder image">
@@ -70,7 +70,7 @@
                     vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo. Suspendisse posuere
                     aliquet ex eu ultricies. Suspendisse ac velit et ipsum rutrum luctus ac placerat velit.
                     Morbi id dui vitae massa mollis convallis</p>
-                <a href="#" class="btn btn-primary stretched-link">Umów się na wizytę</a>
+                <a href="{{route('global.personnel')}}" class="btn btn-primary stretched-link">Umów się na wizytę</a>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="images/implanty.jpg" alt="Generic placeholder image">

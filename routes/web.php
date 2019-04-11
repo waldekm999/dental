@@ -35,6 +35,7 @@ Route::post('/pacjenci', 'PatientController@store')->name('patient.store');
 Route::get('/wizyty/pacjenci/{id?}/{searchKey?}', 'VisitController@patientVisits')->where('id', '[0-9]+')->name('visit.patientVisits')->middleware('auth');
 Route::get('/wizyty/dodanie', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::post('wizyty/', 'VisitController@store')->name('visit.store')->middleware('auth');
+Route::get('wizyty/dodanie/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
 
 //Route::prefix('admin')->group(function (){
 Route::group([

@@ -96,6 +96,22 @@ class VisitController extends Controller
         ]);
     }
 
+    public function createPatientSpecialistSingle(UserRepository $model, $employeeId)
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $employee = $model->find($employeeId);
+        $patient = $model->find($userId);
+
+
+
+        return view('visit_single_specialist_add', [
+            'specialist' => $employee,
+            'patient' => $patient,
+            'title' =>'Dodanie wizyty'
+        ]);
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();

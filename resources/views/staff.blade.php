@@ -14,7 +14,9 @@
         <div class="jumbotron jumbotron-fluid my-0">
             <div class="container">
                 <h1>Nasz zespół jest do Twojej dyspozycji</h1>
-                <p>Donec vehicula, quam vel dapibus malesuada, est arcu egestas ex, ornare auctor lectus ex in nisl. Suspendisse in consectetur erat.</p>
+                <span>Poniżej znajdziecie najlepszych specialistów w swoich dziedzinach.
+                    Dokonaj wyboru zgodnie z interesującą Cię specjalinością. Pamiętaj,
+                    że jeśli masz wątpliwości którego lekarza wybrać jesteśmy do Twojej dyspozycji pod numerem tel. <span class="text-danger">077 111 11 11</span></p>
             </div>
         </div>
     </div>
@@ -34,7 +36,7 @@
                                 @endforeach
 
                             </p>
-                            <a href="#" class="btn btn-primary stretched-link">Umów się na wizytę</a>
+                            <a href="{{route('visit.createPatientSpecialistSingle', ['id' => $employee->id])}}" class="btn btn-primary stretched-link">Umów się na wizytę</a>
                         </div>
                     </div>
                 </div>
