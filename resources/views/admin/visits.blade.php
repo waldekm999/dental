@@ -17,13 +17,13 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Specialista</th>
-                <th>Pacjent</th>
-                <th>Data</th>
+                <th><a href="{{route('visit.index', ['searchKey' => 'id'])}}">#</a></th>
+                <th><a href="{{route('visit.index', ['searchKey' => 'doctor_id'])}}">Specialista</a></th>
+                <th><a href="{{route('visit.index', ['searchKey' => 'patient_id'])}}">Pacjent</a></th>
+                <th><a href="{{route('visit.index', ['searchKey' => 'date'])}}">Data</a></th>
                 <th>Godzina</th>
-                <th>Status</th>
-                <th>Opis</th>
+                <th><a href="{{route('visit.index', ['searchKey' => 'status'])}}">Status</a></th>
+
             </tr>
             </thead>
             <tbody>
@@ -35,11 +35,12 @@
             <td>{{ $visit->date }}</td>
             <td>{{ $visit->time_in.' -- '.$visit->time_out }}</td>
             <td>{{ $visit->status }}</td>
-            <td>{{ $visit->description }}</td>
+
         </tr>
 
         @endforeach
             </tbody>
         </table>
+        {{ $visits->links() }}
     </div>
     @endsection

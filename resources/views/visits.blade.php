@@ -17,12 +17,12 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Specialista</th>
+                <th><a href="{{route('visit.patientVisits', [ 'id' => '0', 'searchKey' => 'id'])}}">#</a></th>
+                <th><a href="{{route('visit.patientVisits', [ 'id' => '0', 'searchKey' => 'doctor_id'])}}">Specialista</a></th>
                 <th>Pacjent</th>
-                <th>Data</th>
+                <th><a href="{{route('visit.patientVisits', [ 'id' => '0' ,'searchKey' => 'date'])}}">Data</a></th>
                 <th>Godzina</th>
-                <th>Status</th>
+                <th><a href="{{route('visit.patientVisits', ['id' => '0', 'searchKey' => 'status'])}}">Status</a></th>
             </tr>
             </thead>
             <tbody>

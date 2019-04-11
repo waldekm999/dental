@@ -12,27 +12,29 @@ use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
-    public function index(VisitRepository $model)
+    public function index(VisitRepository $model, $searchKey = 'date')
     {
-        $visits = $model->getAllVisits();
+        $visits = $model->getAllVisits($searchKey);
 
         return view('/admin/visits', [
            'visits' => $visits,
-           'title' => 'Wizyty'
+           'title' => 'Wizyty',
+            'menu' => 'layouts.admin_app'
         ]);
     }
 
-    public function staffVisits(VisitRepository $model, $id)
+    public function staffVisits(VisitRepository $model, $id, $searchKey = 'date')
     {
-        $visits = $model->getEmployeeVisits($id);
+        $visits = $model->getEmployeeVisits($id, $searchKey);
 
         return view('admin/employee_visits', [
            'visits' => $visits,
-           'title' => 'Wizyty'
+           'title' => 'Wizyty',
+            'menu' => 'layouts.admin_app'
         ]);
     }
 
-    public function patientVisits(VisitRepository $model, $id)
+    public function patientVisits(VisitRepository $model, $id, $searchKey = 'date')
     {
         $user = Auth::user();
         $type = $user->type;
@@ -41,10 +43,18 @@ class VisitController extends Controller
         if($type == 'patient') {
             $id = $user->id;
             $menu = 'layouts.app';
+
+            $visits = $model->getPatientVisits($id, $searchKey);
+            return view('visits', [
+                'visits' => $visits,
+                'title' => 'Wizyty',
+                'menu' => $menu,
+                'id' => $user->id
+            ]);
         }
 
 
-        $visits = $model->getPatientVisits($id);
+        $visits = $model->getPatientVisits($id, $searchKey);
         return view('admin/employee_visits', [
             'visits' => $visits,
             'title' => 'Wizyty',
@@ -52,6 +62,10 @@ class VisitController extends Controller
             'id' => $user->id
         ]);
     }
+
+
+
+
 
     public function create(UserRepository $model)
     {
@@ -65,8 +79,28 @@ class VisitController extends Controller
         ]);
     }
 
+    public function createPatientSingle(UserRepository $model)
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $staff = $model->getAllActiveStaff();
+        $patient = $model->find($userId);
+
+        //echo $patient->id;
+        //die;
+
+        return view('visit_add', [
+            'staff' => $staff,
+            'patient' => $patient,
+            'title' =>'Dodanie wizyty'
+        ]);
+    }
+
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $userType = $user->type;
+
         $visit = new Visit;
         $visit->doctor_id = $request->input('specialist');
         $visit->patient_id = $request->input('patient');
@@ -77,6 +111,12 @@ class VisitController extends Controller
         $visit->status = $request->input('status');
         $visit->save();
 
-        return redirect()->action('VisitController@index');
+
+        if($userType == 'staff') {
+            return redirect()->action('VisitController@index');
+        }
+        else {
+           return redirect('wizyty/pacjenci/0');
+        }
     }
 }
