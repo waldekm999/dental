@@ -8,6 +8,7 @@ use App\Repositories\VisitRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 class VisitController extends Controller
@@ -160,6 +161,14 @@ class VisitController extends Controller
         $visit->status = $request->input('status');
         $visit->save();
 
+        $patient = User::find($visit->patient_id);
+        $specialist = User::find($visit->doctor_id);
+
+
+        Mail::send('emails_visit', ['visit' => $visit, 'patient' => $patient, 'specialist' => $specialist],
+            function($m) use($visit, $patient) {
+            $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
+        });
 
         if($userType == 'staff') {
             return redirect()->action('VisitController@index');

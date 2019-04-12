@@ -29,7 +29,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -56,9 +57,10 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'waldekmdental@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Dental'),
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +86,10 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
-
-    'password' => env('MAIL_PASSWORD'),
+    //'username' => env('MAIL_USERNAME'),
+    'username' => "waldekmdental@gmail.com",
+    //'password' => env('MAIL_PASSWORD'),
+    'password' => "dental123!",
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +102,8 @@ return [
     |
     */
 
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    //'sendmail' => '/usr/sbin/sendmail -bs',
+    'sendmail' => '\"C:\xampp\sendmail\sendmail.exe\" -t',
 
     /*
     |--------------------------------------------------------------------------
