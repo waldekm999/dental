@@ -25,7 +25,7 @@
 
         <hr class="featurette-divider">
 
-        <div class="row featurette">
+        <div class="row featurette" id="stomatologia">
             <div class="col-md-7 py-5">
                 <h2 class="featurette-heading ">Stomatologia i Hirurgia. <span class="text-muted">Komfortowe leczenie.</span></h2>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla.
@@ -43,7 +43,7 @@
 
         <hr class="featurette-divider">
 
-        <div class="row featurette">
+        <div class="row featurette" id="higienizacja">
             <div class="col-md-7 order-md-2 py-5">
                 <h2 class="featurette-heading">Higienizacja i RTG. <span class="text-muted">Piekny uśmiech i profilaktyka.</span></h2>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla.
@@ -62,7 +62,7 @@
 
         <hr class="featurette-divider">
 
-        <div class="row featurette">
+        <div class="row featurette" id="protetyka">
             <div class="col-md-7 py-5">
                 <h2 class="featurette-heading">Protetyka i Implantologia. <span class="text-muted">Powrót do zdrowia.</span></h2>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla.

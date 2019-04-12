@@ -7,7 +7,7 @@
  */
 ?>
 
-@extends($menu);
+@extends('layouts.admin_app');
 
 @section('content')
     <div class="container">
@@ -17,18 +17,18 @@
 
             <div class="form-group">
                 <select name="specialist" style="width: 200px">
-                    @foreach($staff as $specialist)
+
                        <option value="{{ $specialist->id }}"> {{ $specialist->surname.' '.$specialist->name }}</option>
-                        @endforeach
+
                 </select>
                 <label for="specialist">Specialista</label>
             </div>
 
             <div class="form-group">
                 <select name="patient" style="width: 200px">
-
+                    @foreach($patients as $patient)
                         <option value="{{ $patient->id }}"> {{ $patient->surname.' '.$patient->name }}</option>
-
+                    @endforeach
                 </select>
                 <label for="patient" >Pacjent</label>
             </div>

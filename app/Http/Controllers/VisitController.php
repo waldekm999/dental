@@ -30,7 +30,8 @@ class VisitController extends Controller
         return view('admin/employee_visits', [
            'visits' => $visits,
            'title' => 'Wizyty',
-            'menu' => 'layouts.admin_app'
+            'menu' => 'layouts.admin_app',
+            'specialistId' => $id
         ]);
     }
 
@@ -48,18 +49,18 @@ class VisitController extends Controller
             return view('visits', [
                 'visits' => $visits,
                 'title' => 'Wizyty',
-                'menu' => $menu,
-                'id' => $user->id
+                'menu' => $menu
             ]);
         }
 
-
         $visits = $model->getPatientVisits($id, $searchKey);
-        return view('admin/employee_visits', [
+        return view('admin/patient_visits', [
             'visits' => $visits,
             'title' => 'Wizyty',
             'menu' => $menu,
-            'id' => $user->id
+            'id' => $id,
+            'specialistId' => $user->id,
+
         ]);
     }
 
@@ -83,6 +84,7 @@ class VisitController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
+
         $staff = $model->getAllActiveStaff();
         $patient = $model->find($userId);
 
@@ -92,7 +94,38 @@ class VisitController extends Controller
         return view('visit_add', [
             'staff' => $staff,
             'patient' => $patient,
-            'title' =>'Dodanie wizyty'
+            'title' =>'Dodanie wizyty',
+            'menu' => 'layouts.app'
+        ]);
+    }
+
+    public function createAdminPatientSingle(UserRepository $model, $id)
+    {
+        //$user = Auth::user();
+        $userId = $id;
+
+        $staff = $model->getAllActiveStaff();
+        $patient = $model->find($userId);
+
+
+
+        return view('visit_add', [
+            'staff' => $staff,
+            'patient' => $patient,
+            'title' =>'Dodanie wizyty',
+            'menu' => 'layouts.admin_app'
+        ]);
+    }
+
+    public function createSpecialistSingle(UserRepository $model, $employeeId)
+    {
+        $employee = $model->find($employeeId);
+        $patients = $model->getPatientsForVisits();
+
+        return view('admin/visit_add_single_specialist', [
+           'specialist' => $employee,
+            'patients' => $patients,
+            'title' => 'Dodanie wizyty dla specjalisty'
         ]);
     }
 

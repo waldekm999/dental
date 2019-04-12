@@ -12,8 +12,8 @@
 
 @section('content')
     <div class="container">
-        <h2>Lista Wizyt</h2>
-        <a href="{{route('visit.createSpecialistSingle', ['id' => $specialistId])}}" class="btn btn-primary my-3">Dodaj wizytę</a>
+        <h2>Lista Wizyt </h2>
+        <a href="{{route('visit.createAdminPatientSingle', ['id' => $id])}}" class="btn btn-primary my-3">Dodaj wizytę</a>
         <table class="table table-hover">
             <thead>
             <tr>
