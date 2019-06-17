@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\VisitDetails;
 use Illuminate\Database\Eloquent\Model;
 
 class Visit extends Model
@@ -23,5 +24,10 @@ class Visit extends Model
     public function patient()
     {
         return $this->belongsTo(User::class, 'patient_id');
+    }
+
+    public function details()
+    {
+        return $this->hasOne(VisitDetails::class, 'visit_id');
     }
 }

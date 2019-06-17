@@ -37,6 +37,7 @@ Route::get('/wizyty/dodanie', 'VisitController@createPatientSingle')->name('visi
 Route::get('wizyty/dodanie/{id?}', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::post('wizyty/', 'VisitController@store')->name('visit.store')->middleware('auth');
 Route::get('wizyty/dodanie_lekarz/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
+//Route::get('/wizyta/{id}', 'VisitController@visitDetails')->name('visit.visitDetails')->middleware('auth';
 
 //Route::prefix('admin')->group(function (){
 Route::group([
