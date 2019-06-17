@@ -36,7 +36,7 @@ Route::get('/wizyty/pacjenci/{id?}/{searchKey?}', 'VisitController@patientVisits
 Route::get('/wizyty/dodanie', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::get('wizyty/dodanie/{id?}', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::post('wizyty/', 'VisitController@store')->name('visit.store')->middleware('auth');
-Route::get('wizyty/dodanie/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
+Route::get('wizyty/dodanie_lekarz/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
 
 //Route::prefix('admin')->group(function (){
 Route::group([
@@ -58,15 +58,12 @@ Route::group([
     Route::get('wizyty/dodaj/{id?}', 'VisitController@createSpecialistSingle')->name('visit.createSpecialistSingle');
     Route::get('wizyty/dodanie/{id?}', 'VisitController@createAdminPatientSingle')->name('visit.createAdminPatientSingle');
     Route::get('/wizyty/{searchKey?}', 'VisitController@index')->name('visit.index');
-    //Route::post('wizyty/', 'VisitController@store')->name('visit.store');
     Route::get('/wizyty/lekarze/{id}/{searchKey?}', 'VisitController@staffVisits')->name('visit.staffVisits');
-    //Route::get('/wizyty/pacjenci/{id}', 'VisitController@patientVisits')->name('visit.patientVisits');
     Route::get('/pacjenci/dodaj', 'PatientController@create')->name('patient.create');
     Route::post('pacjenci/edytuj', 'PatientController@editStore')->name('patient.editStore');
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');
     Route::get('/pacjenci/{searchkey?}', 'PatientController@index')->where('searchkey', '[A-Za-z]+')->name('patient.index');
-
-    Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');//->middleware('auth', 'staff');
+    Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');
 });
 
 

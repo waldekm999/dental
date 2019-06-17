@@ -165,7 +165,8 @@ class VisitController extends Controller
         $specialist = User::find($visit->doctor_id);
 
 
-        Mail::send('emails_visit', ['visit' => $visit, 'patient' => $patient, 'specialist' => $specialist],
+        Mail::send('emails_visit', ['visit' => $visit, 'patient' =>
+            $patient, 'specialist' => $specialist],
             function($m) use($visit, $patient) {
             $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
         });
