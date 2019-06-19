@@ -36,8 +36,9 @@ Route::get('/wizyty/pacjenci/{id?}/{searchKey?}', 'VisitController@patientVisits
 Route::get('/wizyty/dodanie', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::get('wizyty/dodanie/{id?}', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::post('wizyty/', 'VisitController@store')->name('visit.store')->middleware('auth');
+Route::post('wizyty/', 'VisitController@storeDetails')->name('visit.storeDetails')->middleware('auth');
 Route::get('wizyty/dodanie_lekarz/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
-//Route::get('/wizyta/{id}', 'VisitController@visitDetails')->name('visit.visitDetails')->middleware('auth';
+Route::get('/wizytaszczegoly/{id}', 'VisitController@visitDetails')->name('visit.visitDetails')->middleware('auth');
 
 //Route::prefix('admin')->group(function (){
 Route::group([
@@ -65,6 +66,7 @@ Route::group([
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');
     Route::get('/pacjenci/{searchkey?}', 'PatientController@index')->where('searchkey', '[A-Za-z]+')->name('patient.index');
     Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');
+    Route::get('/wizytaszczegoly/{id}', 'VisitController@visitDetails')->name('visit.visitDetails');
 });
 
 

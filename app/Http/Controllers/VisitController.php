@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use App\Repositories\UserRepository;
+use App\Repositories\VisitDetailsRepository;
 use App\Repositories\VisitRepository;
 use App\Models\User;
+use App\VisitDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -171,11 +173,60 @@ class VisitController extends Controller
             $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
         });
 
+
         if($userType == 'staff') {
             return redirect()->action('VisitController@index');
         }
         else {
            return redirect('wizyty/pacjenci/0');
         }
+
+    }
+
+    public function visitDetails(VisitDetailsRepository $modelDetails,
+                                 VisitRepository $modelVisit ,$id)
+    {
+        $details = $modelDetails->getVisitDetails($id);
+        $visit = $modelVisit->find($id);
+
+        return view('admin/visitdetails_edit', [
+            'details' => $details,
+            'visit' => $visit,
+            'title' => 'Szczegóły wizyty',
+            'menu' => 'layouts.admin_app'
+        ]);
+    }
+
+    public function storeDetails(Request $request)
+    {
+        $user = Auth::user();
+        $userType = $user->type;
+
+        $visit = new Visit;
+        $visit->doctor_id = $request->input('visit_doctor');
+        $visit->patient_id = $request->input('visit_patient');
+        $patient = User::find($visit->patient_id);
+        $specialist = User::find($visit->doctor_id);
+
+
+        $visitDetails = new VisitDetails;
+        $visitDetails->visit_id = $request->input('visit_id');
+        $visitDetails->treatments = $request->input('treatments');
+        $visitDetails->drugs = $request->input('drugs');
+        $visitDetails->prescription = $request->input('prescription');
+        $visitDetails->save();
+
+
+
+        Mail::send('emails_details', [
+            'visit' => $visit,
+            'patient' => $patient,
+            'specialist' => $specialist,
+            'visitDetails' => $visitDetails],
+            function($m) use($visit, $patient) {
+                $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
+            });
+
+        return redirect()->action('VisitController@index');
     }
 }

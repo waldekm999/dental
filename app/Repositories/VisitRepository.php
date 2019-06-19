@@ -36,5 +36,7 @@ class VisitRepository extends BaseRepository {
     {
         return $this->model->where('patient_id', $id)->orderBy($searchKey)->get();
     }
+
+
 }
 
