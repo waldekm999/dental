@@ -202,13 +202,17 @@ class VisitController extends Controller
             ]);
         }
         elseif ($userType == 'patient') {
-
-            return view('visitdetails', [
-                'details' => $details,
-                'visit' => $visit,
-                'title' => 'Szczegóły wizyty',
-                'menu' => 'layouts.admin_app'
-            ]);
+                if($user->id == $visit->patient_id) {
+                    return view('visitdetails', [
+                        'details' => $details,
+                        'visit' => $visit,
+                        'title' => 'Szczegóły wizyty',
+                        'menu' => 'layouts.admin_app'
+                    ]);
+                } else {
+                    echo "<h3>Brak możliwości zwrócenia żądanych zasobów</h3><br/>
+                            <p>skontaktuj się z administratorem</p>";
+                }
         }
         else {
             return view('main_page', [
