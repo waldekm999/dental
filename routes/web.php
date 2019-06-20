@@ -48,6 +48,7 @@ Route::group([
         'staff'
     ],
 ], function () {
+    Route::post('wizyty/', 'VisitController@store')->name('visit.store');
     Route::get('/lekarze/dodaj', 'StaffController@create')->name('staff.create');
     Route::post('/lekarze/edytuj', 'StaffController@editStore')->name('staff.editStore');
     Route::get('/lekarze/edytuj/{id}', 'StaffController@edit')->name('staff.edit');
@@ -66,7 +67,7 @@ Route::group([
     Route::get('pacjenci/edytuj/{id}', 'PatientController@edit')->name('patient.edit');
     Route::get('/pacjenci/{searchkey?}', 'PatientController@index')->where('searchkey', '[A-Za-z]+')->name('patient.index');
     Route::get('/pacjenci/{id}', 'PatientController@show')->where('id', '[0-9]+')->name('patient.show');
-    Route::get('/wizytaszczegoly/{id}', 'VisitController@visitDetails')->name('visit.visitDetails');
+    //Route::get('/wizytaszczegoly/{id}', 'VisitController@visitDetails')->name('visit.visitDetails');
 });
 
 

@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Dodawanie wizyty</h2>
+        <h2>Szczegóły wizyty</h2>
 
 
         <form  role="form" readonly>

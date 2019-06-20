@@ -188,23 +188,33 @@ class VisitController extends Controller
     {
         $user = Auth::user();
         $userType = $user->type;
-
         $details = $modelDetails->getVisitDetails($id);
         $visit = $modelVisit->find($id);
 
-        if($userType == 'staff') {
 
-            return view('admin/visitdetails_edit', [
-                'details' => $details,
-                'visit' => $visit,
-                'title' => 'Szczegóły wizyty',
-                'menu' => 'layouts.admin_app'
-            ]);
+
+        if($userType == 'staff') {
+                if(!isset($visit->details->id)) {
+                    return view('admin/visitdetails_edit', [
+                        //'details' => $details,
+                        'visit' => $visit,
+                        'title' => 'Szczegóły wizyty',
+                        'menu' => 'layouts.admin_app'
+                    ]);
+                }
+                else {
+                    return view('admin/visitdetails', [
+                        //'details' => $details,
+                        'visit' => $visit,
+                        'title' => 'Szczegóły wizyty',
+                        'menu' => 'layouts.admin_app'
+                    ]);
+                }
         }
         elseif ($userType == 'patient') {
                 if($user->id == $visit->patient_id) {
                     return view('visitdetails', [
-                        'details' => $details,
+                        //'details' => $details,
                         'visit' => $visit,
                         'title' => 'Szczegóły wizyty',
                         'menu' => 'layouts.admin_app'
@@ -214,11 +224,11 @@ class VisitController extends Controller
                             <p>skontaktuj się z administratorem</p>";
                 }
         }
-        else {
-            return view('main_page', [
-                'title' => 'Stomatologia Dental'
-            ]);
-        }
+        //else {
+            //return view('main_page', [
+                //'title' => 'Stomatologia Dental'
+           // ]);
+       // }
     }
 
     public function storeDetails(Request $request)

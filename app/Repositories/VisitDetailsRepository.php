@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories;
+
 use App\VisitDetails;
 use Faker\Provider\Base;
 use Illuminate\Database\Eloquent\Model;
@@ -23,4 +24,6 @@ class VisitDetailsRepository extends BaseRepository
     {
         return $this->model->where('visit_id', $id)->get();
     }
+
+
 }

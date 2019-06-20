@@ -34,6 +34,7 @@
                     <td>{{ $visit->date }}</td>
                     <td>{{ $visit->time_in.' -- '.$visit->time_out }}</td>
                     <td> {{ $visit->status }}</td>
+                    <td><a href="{{ route('visit.visitDetails', [$visit->id])}}">Szczegóły</a></td>
 
                 </tr>
 
