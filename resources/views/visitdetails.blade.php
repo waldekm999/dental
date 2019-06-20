@@ -14,7 +14,7 @@
         <h2>Dodawanie wizyty</h2>
 
 
-        <form action="{{  action('VisitController@storeDetails') }}" method="post" role="form">
+        <form  role="form" readonly>
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <input type="hidden" name="visit_id" value="{{ $visit->id }}"/>
             <input type="hidden" name="visit_patient" value="{{ $visit->patient_id }}"/>
@@ -66,7 +66,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="treatments">Wykonane zabiegi</label>
-                            <textarea class="form-control" name="treatments" rows="5" >
+                            <textarea class="form-control" name="treatments" rows="5" readonly disabled>
                                 @if(isset($visit->details->treatments))
                                     {{$visit->details->treatments}}
                                     @endif
@@ -77,7 +77,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="drugs">Podane leki</label>
-                            <textarea class="form-control" name="drugs" rows="5" >
+                            <textarea class="form-control" name="drugs" rows="5" readonly disabled>
                                 @if(isset($visit->details->drugs))
                                     {{$visit->details->drugs}}
                                 @endif
@@ -88,7 +88,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="prescription">Zalecenia dla pacjenta po wizycie</label>
-                            <textarea class="form-control" name="prescription" rows="5" >
+                            <textarea class="form-control" name="prescription" rows="5"readonly disabled >
                                 @if(isset($visit->details->prescription))
                                     {{$visit->details->prescription}}
                                 @endif
@@ -99,25 +99,26 @@
                 </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="rezerwation" value="rezerwacja">
+                <input class="form-check-input" type="radio" name="status" id="rezerwation" value="rezerwacja" disabled>
                 <label class="form-check-label" for="rezerwation">
                     rezerwacja
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="cancelled" value="odwołana" >
+                <input class="form-check-input" type="radio" name="status" id="cancelled" value="odwołana" disabled>
                 <label class="form-check-label" for="cancelled">
                     odwołana
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" id="visit" value="wizyta" checked>
+                <input class="form-check-input" type="radio" name="status" id="visit" value="wizyta" disabled>
                 <label class="form-check-label" for="visit">
                     wizyta
                 </label>
             </div>
             <div class="my-3">
-            <input type="submit" value="Wprowadź zmiany" class="btn-primary" />
+
+                <a href="{{ route('visit.patientVisits') }}" class="btn btn-primary"><< Powrót</a>
             </div>
 
 

@@ -186,15 +186,35 @@ class VisitController extends Controller
     public function visitDetails(VisitDetailsRepository $modelDetails,
                                  VisitRepository $modelVisit ,$id)
     {
+        $user = Auth::user();
+        $userType = $user->type;
+
         $details = $modelDetails->getVisitDetails($id);
         $visit = $modelVisit->find($id);
 
-        return view('admin/visitdetails_edit', [
-            'details' => $details,
-            'visit' => $visit,
-            'title' => 'Szczegóły wizyty',
-            'menu' => 'layouts.admin_app'
-        ]);
+        if($userType == 'staff') {
+
+            return view('admin/visitdetails_edit', [
+                'details' => $details,
+                'visit' => $visit,
+                'title' => 'Szczegóły wizyty',
+                'menu' => 'layouts.admin_app'
+            ]);
+        }
+        elseif ($userType == 'patient') {
+
+            return view('visitdetails', [
+                'details' => $details,
+                'visit' => $visit,
+                'title' => 'Szczegóły wizyty',
+                'menu' => 'layouts.admin_app'
+            ]);
+        }
+        else {
+            return view('main_page', [
+                'title' => 'Stomatologia Dental'
+            ]);
+        }
     }
 
     public function storeDetails(Request $request)
