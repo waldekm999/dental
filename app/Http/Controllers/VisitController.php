@@ -88,11 +88,9 @@ class VisitController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
+
         $staff = $model->getAllActiveStaff();
         $patient = $model->find($userId);
-
-        //echo $patient->id;
-        //die;
 
         return view('visit_add', [
             'staff' => $staff,
@@ -150,6 +148,7 @@ class VisitController extends Controller
 
     public function store(Request $request)
     {
+
         $user = Auth::user();
         $userType = $user->type;
 
@@ -166,13 +165,11 @@ class VisitController extends Controller
         $patient = User::find($visit->patient_id);
         $specialist = User::find($visit->doctor_id);
 
-
         Mail::send('emails_visit', ['visit' => $visit, 'patient' =>
             $patient, 'specialist' => $specialist],
             function($m) use($visit, $patient) {
             $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
         });
-
 
         if($userType == 'staff') {
             return redirect()->action('VisitController@index');
@@ -180,7 +177,6 @@ class VisitController extends Controller
         else {
            return redirect('wizyty/pacjenci/0');
         }
-
     }
 
     public function visitDetails(VisitDetailsRepository $modelDetails,
@@ -188,7 +184,7 @@ class VisitController extends Controller
     {
         $user = Auth::user();
         $userType = $user->type;
-        $details = $modelDetails->getVisitDetails($id);
+        //$details = $modelDetails->getVisitDetails($id);
         $visit = $modelVisit->find($id);
 
 

@@ -19,7 +19,6 @@ class GlobalController extends Controller
     {
         $staff_users = $model->getAllActiveStaff();
 
-        //return dd($staff_users);
         return view('staff', [
            'personnel_list'=>$staff_users,
             'title' => 'Nasi specialiści'

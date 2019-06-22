@@ -36,7 +36,8 @@
                                 @endforeach
 
                             </p>
-                            <a href="{{route('visit.createPatientSpecialistSingle', ['id' => $employee->id])}}" class="btn btn-primary stretched-link">Umów się na wizytę</a>
+                            <a href="{{route('visit.createPatientSpecialistSingle', ['id' => $employee->id])}}"
+                               class="btn btn-primary stretched-link">Umów się na wizytę</a>
                         </div>
                     </div>
                 </div>

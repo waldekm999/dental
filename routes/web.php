@@ -36,7 +36,7 @@ Route::get('/wizyty/pacjenci/{id?}/{searchKey?}', 'VisitController@patientVisits
 Route::get('/wizyty/dodanie', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::get('wizyty/dodanie/{id?}', 'VisitController@createPatientSingle')->name('visit.createPatientSingle')->middleware('auth');
 Route::post('wizyty/', 'VisitController@store')->name('visit.store')->middleware('auth');
-Route::post('wizyty/', 'VisitController@storeDetails')->name('visit.storeDetails')->middleware('auth');
+Route::post('wizyty/szczegoly', 'VisitController@storeDetails')->name('visit.storeDetails')->middleware('auth');
 Route::get('wizyty/dodanie_lekarz/{id}', 'VisitController@createPatientSpecialistSingle')->where('id', '[0-9]+')->name('visit.createPatientSpecialistSingle')->middleware('auth');
 Route::get('/wizytaszczegoly/{id}', 'VisitController@visitDetails')->name('visit.visitDetails')->middleware('auth');
 
@@ -48,7 +48,6 @@ Route::group([
         'staff'
     ],
 ], function () {
-    Route::post('wizyty/', 'VisitController@store')->name('visit.store');
     Route::get('/lekarze/dodaj', 'StaffController@create')->name('staff.create');
     Route::post('/lekarze/edytuj', 'StaffController@editStore')->name('staff.editStore');
     Route::get('/lekarze/edytuj/{id}', 'StaffController@edit')->name('staff.edit');
