@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 12 Kwi 2019, 14:51
+-- Czas generowania: 02 Lip 2019, 21:00
 -- Wersja serwera: 10.1.36-MariaDB
 -- Wersja PHP: 7.2.11
 
@@ -46,13 +46,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_03_02_104220_add_roles_table', 1),
 (6, '2019_03_02_104238_add_visits_table', 1),
 (7, '2019_03_02_113517_add_user_status', 1),
-(8, '2019_03_11_203552_add_foreigns_to_visits', 2),
-(9, '2019_03_12_210844_create_specializations_has_user_table', 3),
-(10, '2019_03_12_211744_create_roles_has_user_table', 3),
-(11, '2019_03_14_200646_add_status_to_visits', 4),
-(12, '2019_03_19_201552_change_visits_table', 5),
-(13, '2019_03_19_202727_change_date_visits_table', 6),
-(14, '2019_03_19_203019_adde_newdate_visits_table', 7);
+(8, '2019_03_11_203552_add_foreigns_to_visits', 1),
+(9, '2019_03_12_210844_create_specializations_has_user_table', 1),
+(10, '2019_03_12_211744_create_roles_has_user_table', 1),
+(11, '2019_03_14_200646_add_status_to_visits', 1),
+(12, '2019_03_19_201552_change_visits_table', 1),
+(13, '2019_03_19_202727_change_date_visits_table', 1),
+(14, '2019_03_19_203019_adde_newdate_visits_table', 1),
+(15, '2019_06_17_103047_create_visit_details_table', 1),
+(16, '2019_06_17_110929_add_foreign_to_visit_details', 2);
 
 -- --------------------------------------------------------
 
@@ -65,13 +67,6 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Zrzut danych tabeli `password_resets`
---
-
-INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('janek@dzbanek.pl', '$2y$10$BPRH/I7zL3Dy60PuxZy3ieEEghvGYpAKlSI7.iMZC0cl9WqSbLAhy', '2019-04-08 18:18:24');
 
 -- --------------------------------------------------------
 
@@ -321,10 +316,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (114, 'Aleksandra', 'lis.inga@wp.pl', NULL, '$2y$10$hZRWF/HW7/BaPBe00X93D.zmlWU93LJSe5xvliKTnWSxiBZhgeYj2', NULL, '2019-03-04 19:32:56', '2019-03-04 19:32:56', 'Nowak', '58276269411', '+48 94 522 52 44', 'staff', 'Lubin', '17-367', NULL, 'Ale rozpacz smrodliwego zaułka tak długo biła głową w ślepy parkan z poziomych desek, zamykającą i.', 'active'),
 (116, 'Waldek', 'waldekm999@wp.pl', NULL, 'secret', NULL, '2019-03-16 18:19:00', '2019-04-12 09:10:02', 'Małecki', '12345678999', '999999999', 'staff', 'Opole', '45-860', NULL, NULL, 'inactive'),
 (117, 'Jerzy', 'jurek@wp.pl', NULL, 'secret', NULL, '2019-03-19 10:47:34', '2019-03-19 10:47:34', 'Dziambok', '99121212345', '980765432', 'patient', 'Opole', '42-300', NULL, NULL, NULL),
-(119, 'Janek', 'janek@dzbanek.pl', NULL, '$2y$10$IGynDWyPKzLbQ.jzj6TpLe.8I0IceWuWdw9W6RoHYVTEasbmcFFsO', 'Dee29SRbxJKQNjLNFzI7y8YxNTiWhSa1WyPFZu1M1YX2XrQaM8RmGiKrnqAW', '2019-04-05 17:32:24', '2019-04-11 06:50:50', 'Dzbanek', '12345678991', '999999999', 'patient', 'Ozimek', '45-100', 'Jodłowa 1', NULL, NULL),
+(119, 'Janek', 'janek@dzbanek.pl', NULL, '$2y$10$IGynDWyPKzLbQ.jzj6TpLe.8I0IceWuWdw9W6RoHYVTEasbmcFFsO', '52X2uj52UuMwvbkUAj3FtB0eRZp4dewBj1MpKqF4nefcObom9f98iw0hT8Dm', '2019-04-05 17:32:24', '2019-04-11 06:50:50', 'Dzbanek', '12345678991', '999999999', 'patient', 'Ozimek', '45-100', 'Jodłowa 1', NULL, NULL),
 (120, 'Zenon', 'zenek@wp.pl', NULL, '$2y$10$vdosmoa45VAd3jE/nBU0BuiJjy81bpw3UXPkY9CNDuNDignKjk0Ou', NULL, '2019-04-05 17:34:39', '2019-04-05 17:34:39', 'Grednyj', '99121012345', '48 49 752 22 61', 'patient', 'Opole', '45-860', NULL, NULL, NULL),
 (121, 'Janek', 'janek@onet.pl', NULL, '$2y$10$0lh5ej1luM5DnhXQ0l.X/eHh7cayoC.gISYtol.aesmc0Mdq.SgNS', NULL, '2019-04-05 17:41:03', '2019-04-05 17:41:03', 'Dziambok', '12345612345', '123456789', 'patient', 'Ozimek', '45-100', NULL, NULL, NULL),
-(122, 'Amelia', 'waldekm999@gmail.com', NULL, '$2y$10$LfQAwlONV3Bb2dqQqQvnaeS/CdG5eHY.xG.l4qH8e2RGH3gnauzBe', 'SJNoWdIDwHHcWwt0Ej40BZIhG276duK5exeBoJbDd70yiDORYonXlF81C9mQ', '2019-04-11 18:18:58', '2019-04-12 09:50:36', 'Bogdanowska', '98765432189', '666999888', 'patient', 'Opole', '45-865', 'Pużaka 234', NULL, NULL);
+(122, 'Amelia', 'waldekm999@gmail.com', NULL, '$2y$10$LfQAwlONV3Bb2dqQqQvnaeS/CdG5eHY.xG.l4qH8e2RGH3gnauzBe', 'qIZm31kCpSQU4cae6Z3oCZAhhn3MrHELL4y3aZyZ7aEP06uRuqgq0ij5RBLp', '2019-04-11 18:18:58', '2019-04-12 09:50:36', 'Bogdanowska', '98765432189', '666999888', 'patient', 'Opole', '45-865', 'Pużaka 234', NULL, NULL),
+(123, 'Renata', 'k.piernikorz@op.pl', NULL, '$2y$10$HADsAC1B09tDgRt8zWdGruWbF4yZCVCPhmVQBU1feLXYF1i1xkW92', NULL, '2019-06-21 06:30:04', '2019-06-21 06:30:04', 'Piekorz', '87526613626', '502035247', 'patient', 'Opole', '45-860', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -336,49 +332,94 @@ CREATE TABLE `visits` (
   `id` int(10) UNSIGNED NOT NULL,
   `doctor_id` bigint(20) UNSIGNED NOT NULL,
   `patient_id` bigint(20) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
-  `time_in` time NOT NULL,
-  `time_out` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('rezerwacja','odwołana','wizyta') COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` char(24) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_in` time NOT NULL,
+  `time_out` time NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Zrzut danych tabeli `visits`
 --
 
-INSERT INTO `visits` (`id`, `doctor_id`, `patient_id`, `date`, `time_in`, `time_out`, `created_at`, `updated_at`, `description`, `status`) VALUES
-(8, 106, 12, '2019-03-10', '12:00:00', '12:30:00', '2019-03-02 11:25:07', '0000-00-00 00:00:00', 'całkiem spoko wizyta', 'wizyta'),
-(9, 106, 12, '2019-03-27', '09:30:00', '10:00:00', NULL, NULL, NULL, 'rezerwacja'),
-(10, 107, 16, '2019-03-25', '10:00:00', '11:00:00', NULL, NULL, NULL, 'odwołana'),
-(11, 107, 96, '2019-04-23', '08:00:00', '08:30:00', '2019-03-19 20:43:44', '2019-03-19 20:43:44', 'haha', 'rezerwacja'),
-(12, 107, 96, '2019-04-12', '09:00:00', '09:30:00', '2019-03-19 20:54:17', '2019-03-19 20:54:17', 'To nie będzie łatwa wizyta', 'rezerwacja'),
-(13, 109, 68, '2019-04-23', '10:00:00', '10:30:00', '2019-03-19 21:04:58', '2019-03-19 21:04:58', NULL, 'rezerwacja'),
-(14, 102, 45, '2019-04-23', '00:00:11', '11:30:00', '2019-03-19 21:07:18', '2019-03-19 21:07:18', NULL, 'rezerwacja'),
-(15, 107, 96, '2019-03-29', '10:30:00', '11:00:00', '2019-03-19 21:11:53', '2019-03-19 21:11:53', NULL, 'rezerwacja'),
-(16, 102, 5, '2019-05-06', '10:00:00', '10:30:00', '2019-03-25 19:05:21', '2019-03-25 19:05:21', NULL, 'rezerwacja'),
-(17, 107, 119, '2019-05-16', '12:00:00', '12:30:00', '2019-04-11 06:27:33', '2019-04-11 06:27:33', 'Próbna wizyta celem zdefiniowania listy dla pojedynczego pacjenta', 'rezerwacja'),
-(18, 105, 119, '2019-04-30', '11:30:00', '12:00:00', '2019-04-11 06:47:55', '2019-04-11 06:47:55', 'kolejna wizyta naszego Janka', 'rezerwacja'),
-(19, 102, 119, '2019-05-02', '08:00:00', '08:30:00', '2019-04-11 09:21:53', '2019-04-11 09:21:53', 'hm', 'odwołana'),
-(20, 114, 119, '2019-04-04', '08:00:00', '08:30:00', '2019-04-11 09:42:47', '2019-04-11 09:42:47', NULL, 'odwołana'),
-(25, 105, 119, '2019-04-23', '15:00:00', '15:30:00', '2019-04-11 11:06:03', '2019-04-11 11:06:03', NULL, 'rezerwacja'),
-(26, 106, 119, '2019-05-02', '10:00:00', '10:30:00', '2019-04-11 12:32:05', '2019-04-11 12:32:05', NULL, 'rezerwacja'),
-(27, 109, 119, '2019-06-03', '09:30:00', '10:00:00', '2019-04-11 17:32:34', '2019-04-11 17:32:34', NULL, 'rezerwacja'),
-(28, 110, 119, '2019-06-03', '11:00:00', '11:30:00', '2019-04-11 18:03:09', '2019-04-11 18:03:09', NULL, 'rezerwacja'),
-(29, 114, 119, '2019-06-05', '08:00:00', '08:30:00', '2019-04-11 18:15:35', '2019-04-11 18:15:35', NULL, 'rezerwacja'),
-(30, 108, 122, '2019-05-31', '09:00:00', '09:30:00', '2019-04-11 18:19:45', '2019-04-11 18:19:45', 'Zdjęcie łuku górnego', 'rezerwacja'),
-(31, 114, 122, '2019-05-31', '11:00:00', '11:30:00', '2019-04-11 18:20:14', '2019-04-11 18:20:14', NULL, 'rezerwacja'),
-(32, 108, 49, '2019-05-16', '08:00:00', '08:30:00', '2019-04-12 06:29:55', '2019-04-12 06:29:55', NULL, 'rezerwacja'),
-(33, 107, 5, '2019-05-16', '10:30:00', '11:00:00', '2019-04-12 06:30:59', '2019-04-12 06:30:59', NULL, 'rezerwacja'),
-(34, 108, 1, '2019-04-23', '11:00:00', '11:30:00', '2019-04-12 08:06:40', '2019-04-12 08:06:40', NULL, 'rezerwacja'),
-(35, 112, 122, '2019-04-25', '09:00:00', '09:30:00', '2019-04-12 08:11:34', '2019-04-12 08:11:34', NULL, 'rezerwacja'),
-(36, 109, 122, '2019-06-28', '08:00:00', '08:30:00', '2019-04-12 08:22:31', '2019-04-12 08:22:31', NULL, 'rezerwacja'),
-(37, 109, 46, '2019-06-27', '11:00:00', '11:30:00', '2019-04-12 08:24:39', '2019-04-12 08:24:39', NULL, 'rezerwacja'),
-(38, 104, 122, '2019-05-10', '10:00:00', '10:30:00', '2019-04-12 10:44:34', '2019-04-12 10:44:34', NULL, 'rezerwacja'),
-(39, 107, 122, '2019-04-12', '14:00:00', '14:30:00', '2019-04-12 10:46:04', '2019-04-12 10:46:04', NULL, 'rezerwacja'),
-(40, 104, 122, '2019-05-20', '10:00:00', '10:30:00', '2019-04-12 10:47:11', '2019-04-12 10:47:11', NULL, 'rezerwacja');
+INSERT INTO `visits` (`id`, `doctor_id`, `patient_id`, `created_at`, `updated_at`, `description`, `status`, `time_in`, `time_out`, `date`) VALUES
+(8, 106, 12, '2019-03-02 11:25:07', '0000-00-00 00:00:00', 'całkiem spoko wizyta', 'wizyta', '12:00:00', '12:30:00', '2019-03-10'),
+(9, 106, 12, NULL, NULL, NULL, 'wizyta', '09:30:00', '10:00:00', '2019-03-27'),
+(10, 107, 16, NULL, NULL, NULL, 'wizyta', '10:00:00', '11:00:00', '2019-03-25'),
+(11, 107, 96, '2019-03-19 20:43:44', '2019-03-19 20:43:44', 'haha', 'wizyta', '08:00:00', '08:30:00', '2019-04-23'),
+(12, 107, 96, '2019-03-19 20:54:17', '2019-03-19 20:54:17', 'To nie będzie łatwa wizyta', 'wizyta', '09:00:00', '09:30:00', '2019-04-12'),
+(13, 109, 68, '2019-03-19 21:04:58', '2019-03-19 21:04:58', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-04-23'),
+(14, 102, 45, '2019-03-19 21:07:18', '2019-03-19 21:07:18', NULL, 'wizyta', '00:00:11', '11:30:00', '2019-04-23'),
+(15, 107, 96, '2019-03-19 21:11:53', '2019-03-19 21:11:53', NULL, 'wizyta', '10:30:00', '11:00:00', '2019-03-29'),
+(16, 102, 5, '2019-03-25 19:05:21', '2019-03-25 19:05:21', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-05-06'),
+(17, 107, 119, '2019-04-11 06:27:33', '2019-04-11 06:27:33', 'Próbna wizyta celem zdefiniowania listy dla pojedynczego pacjenta', 'wizyta', '12:00:00', '12:30:00', '2019-05-16'),
+(18, 105, 119, '2019-04-11 06:47:55', '2019-04-11 06:47:55', 'kolejna wizyta naszego Janka', 'wizyta', '11:30:00', '12:00:00', '2019-04-30'),
+(19, 102, 119, '2019-04-11 09:21:53', '2019-04-11 09:21:53', 'hm', 'wizyta', '08:00:00', '08:30:00', '2019-05-02'),
+(20, 114, 119, '2019-04-11 09:42:47', '2019-04-11 09:42:47', NULL, 'wizyta', '08:00:00', '08:30:00', '2019-04-04'),
+(25, 105, 119, '2019-04-11 11:06:03', '2019-04-11 11:06:03', NULL, 'wizyta', '15:00:00', '15:30:00', '2019-04-23'),
+(26, 106, 119, '2019-04-11 12:32:05', '2019-04-11 12:32:05', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-05-02'),
+(27, 109, 119, '2019-04-11 17:32:34', '2019-04-11 17:32:34', NULL, 'wizyta', '09:30:00', '10:00:00', '2019-06-03'),
+(28, 110, 119, '2019-04-11 18:03:09', '2019-04-11 18:03:09', NULL, 'wizyta', '11:00:00', '11:30:00', '2019-06-03'),
+(29, 114, 119, '2019-04-11 18:15:35', '2019-04-11 18:15:35', NULL, 'wizyta', '08:00:00', '08:30:00', '2019-06-05'),
+(30, 108, 122, '2019-04-11 18:19:45', '2019-04-11 18:19:45', 'Zdjęcie łuku górnego', 'wizyta', '09:00:00', '09:30:00', '2019-05-31'),
+(31, 114, 122, '2019-04-11 18:20:14', '2019-04-11 18:20:14', NULL, 'wizyta', '11:00:00', '11:30:00', '2019-05-31'),
+(32, 108, 49, '2019-04-12 06:29:55', '2019-04-12 06:29:55', NULL, 'wizyta', '08:00:00', '08:30:00', '2019-05-16'),
+(33, 107, 5, '2019-04-12 06:30:59', '2019-04-12 06:30:59', NULL, 'wizyta', '10:30:00', '11:00:00', '2019-05-16'),
+(34, 108, 1, '2019-04-12 08:06:40', '2019-04-12 08:06:40', NULL, 'wizyta', '11:00:00', '11:30:00', '2019-04-23'),
+(35, 112, 122, '2019-04-12 08:11:34', '2019-04-12 08:11:34', NULL, 'wizyta', '09:00:00', '09:30:00', '2019-04-25'),
+(36, 109, 122, '2019-04-12 08:22:31', '2019-04-12 08:22:31', NULL, 'wizyta', '08:00:00', '08:30:00', '2019-06-28'),
+(37, 109, 46, '2019-04-12 08:24:39', '2019-04-12 08:24:39', NULL, 'wizyta', '11:00:00', '11:30:00', '2019-06-27'),
+(38, 104, 122, '2019-04-12 10:44:34', '2019-04-12 10:44:34', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-05-10'),
+(39, 107, 122, '2019-04-12 10:46:04', '2019-04-12 10:46:04', NULL, 'wizyta', '14:00:00', '14:30:00', '2019-04-12'),
+(40, 104, 122, '2019-04-12 10:47:11', '2019-04-12 10:47:11', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-05-20'),
+(41, 101, 5, '2019-04-13 10:43:19', '2019-04-13 10:43:19', NULL, 'wizyta', '14:00:00', '14:30:00', '2019-06-07'),
+(42, 101, 5, '2019-04-13 10:50:53', '2019-04-13 10:50:53', NULL, 'wizyta', '11:30:00', '12:00:00', '2019-06-04'),
+(43, 108, 122, '2019-04-14 05:38:41', '2019-04-14 05:38:41', NULL, 'wizyta', '09:00:00', '09:30:00', '2019-08-29'),
+(44, 107, 122, '2019-05-18 09:50:34', '2019-05-18 09:50:34', NULL, 'wizyta', '10:00:00', '11:00:00', '2019-07-12'),
+(45, 107, 122, '2019-05-18 09:51:55', '2019-05-18 09:51:55', NULL, 'wizyta', '10:00:00', '10:30:00', '2019-05-02'),
+(46, 107, 96, '2019-06-21 06:41:20', '2019-06-21 06:41:20', NULL, 'rezerwacja', '09:00:00', '09:30:00', '2019-07-10'),
+(47, 102, 122, '2019-06-21 06:41:56', '2019-06-21 06:41:56', NULL, 'rezerwacja', '09:00:00', '09:30:00', '2019-12-05'),
+(48, 107, 122, '2019-06-21 07:05:45', '2019-06-21 07:05:45', NULL, 'rezerwacja', '09:00:00', '09:30:00', '2019-11-30'),
+(49, 107, 122, '2019-06-21 07:43:21', '2019-06-21 07:43:21', NULL, 'rezerwacja', '15:00:00', '15:30:00', '2019-06-29'),
+(50, 105, 122, '2019-06-21 07:57:05', '2019-06-21 07:57:05', NULL, 'rezerwacja', '11:00:00', '11:30:00', '2019-09-20'),
+(51, 110, 42, '2019-06-21 14:07:25', '2019-06-21 14:07:25', NULL, 'rezerwacja', '11:00:00', '11:30:00', '2019-06-30'),
+(52, 104, 122, '2019-06-21 14:07:59', '2019-06-21 14:07:59', NULL, 'rezerwacja', '10:00:00', '10:30:00', '2019-07-18');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `visit_details`
+--
+
+CREATE TABLE `visit_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `visit_id` int(10) UNSIGNED NOT NULL,
+  `prescription` text COLLATE utf8mb4_unicode_ci,
+  `treatments` text COLLATE utf8mb4_unicode_ci,
+  `drugs` text COLLATE utf8mb4_unicode_ci,
+  `expense` decimal(8,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Zrzut danych tabeli `visit_details`
+--
+
+INSERT INTO `visit_details` (`id`, `created_at`, `updated_at`, `visit_id`, `prescription`, `treatments`, `drugs`, `expense`) VALUES
+(2, NULL, NULL, 9, 'Zimne okłady.\r\nPrzez 48 h tylko płyny', 'Zaopatrzenie ropnia. Nawiert', 'Derdalimex 150 ml', '400.00'),
+(3, '2019-06-18 19:20:09', '2019-06-18 19:20:09', 8, 'Brak specialnych zaleceń', 'Ekstrakcja ósemki', 'Pawulon 200 ml', NULL),
+(5, '2019-06-18 19:23:18', '2019-06-18 19:23:18', 11, 'Trzymać się', 'Rwanie zeba', 'Znieczulenie', NULL),
+(6, '2019-06-18 19:36:01', '2019-06-18 19:36:01', 14, 'brak', 'Leczenie kanałowe - jedynka lewa górna', 'brak', NULL),
+(25, '2019-06-18 19:58:44', '2019-06-18 19:58:44', 25, 'Brak', 'Ekstrakcja ósemki', 'Dembrandol', NULL),
+(44, '2019-06-18 20:39:37', '2019-06-18 20:39:37', 35, 'Proszę nie spożywać alkoholu i nikotyny przez min 24 h.\r\nProszę powstrzymać się od spożywania pokarmów stałych przez ok 2h po wizycie', 'Leczenie kanałowe górnej dwójki lewej', 'Przeciwbólowe - tremandon 25 mg', NULL),
+(49, '2019-06-18 20:58:35', '2019-06-18 20:58:35', 39, 'leczenie trójki górnej prawej, piaskowanie', 'przegląd', 'brak', NULL),
+(50, '2019-06-20 07:02:01', '2019-06-20 07:02:01', 20, 'Wstrzymać się od posiłków przez 2h', 'Ekstrakcja', 'Derdolex 15mg', NULL),
+(52, '2019-06-20 10:12:55', '2019-06-20 10:12:55', 10, 'Leczenie kanałowe szóstki dolnej lewej.\r\nPowierzchniowe leczenie dwójki prawej górnej.\r\nKonsultacja ortodonty.', 'Przegląd', 'Brak', NULL),
+(53, '2019-06-20 10:18:08', '2019-06-20 10:18:08', 12, 'Leczenie kanałowe szóstki dolnej lewej.\r\nPowierzchniowe leczenie dwójki prawej górnej.\r\nKonsultacja ortodonty.', 'Przegląd', 'Brak', NULL);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -441,6 +482,13 @@ ALTER TABLE `visits`
   ADD KEY `visit_patient` (`patient_id`);
 
 --
+-- Indeksy dla tabeli `visit_details`
+--
+ALTER TABLE `visit_details`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `visit_id` (`visit_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -448,7 +496,7 @@ ALTER TABLE `visits`
 -- AUTO_INCREMENT dla tabeli `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT dla tabeli `roles`
@@ -478,13 +526,19 @@ ALTER TABLE `specializations_has_user`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT dla tabeli `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT dla tabeli `visit_details`
+--
+ALTER TABLE `visit_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -510,6 +564,12 @@ ALTER TABLE `specializations_has_user`
 ALTER TABLE `visits`
   ADD CONSTRAINT `visit_patient` FOREIGN KEY (`patient_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `visits_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`id`);
+
+--
+-- Ograniczenia dla tabeli `visit_details`
+--
+ALTER TABLE `visit_details`
+  ADD CONSTRAINT `visits_details` FOREIGN KEY (`visit_id`) REFERENCES `visits` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
